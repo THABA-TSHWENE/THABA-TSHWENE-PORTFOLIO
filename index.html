@@ -26,15 +26,26 @@
             <img src="img/avatar.jpeg" alt="Tebogo Thaba" class="hero-img">
             <h3>Hello, I'm</h3>
             <h1>Tebogo Thaba</h1>
-            <p class="role-text">IT Graduate | Full Stack Developer</p>
+            <p class="role-text">
+                <span class="typing">IT Graduate</span>
+            </p>
+            
             <div class="btn-group">
                 <a href="CV.pdf" download class="btn primary">Download CV</a>
                 <a href="#contact" class="btn secondary">Contact</a>
                 <a href="#projects" class="btn primary">View Projects</a>
             </div>
+            
             <div class="social-icons">
                 <a href="https://github.com/THABA-TSHWENE" target="_blank"><i class='bx bxl-github'></i></a>
                 <a href="https://linkedin.com/in/tebogo-thaba" target="_blank"><i class='bx bxl-linkedin'></i></a>
+            </div>
+
+            <div class="scroll-down">
+                <a href="#about">
+                    <i class='bx bx-chevron-down'></i>
+                    <p>Scroll Down</p>
+                </a>
             </div>
         </div>
     </section>
@@ -42,9 +53,10 @@
     <section class="about" id="about">
         <h2 class="section-title">About Me</h2>
         <div class="about-card">
-            <p>I am a final-year IT student at <strong>Vaal University of Technology</strong> (2023-2025). I have a strong foundation in programming, web development, and software engineering, with expertise in Java, Python, and JavaScript. While I enjoy building secure, scalable solutions, I am also certified in networking and cybersecurity through Cisco. I am actively seeking opportunities to contribute to a team that values clean code and innovation.</p>
+            <p>I am a final-year IT student at the <strong>Vaal University of Technology</strong>, graduating in March/April 2026. I have a strong foundation in programming, web development, and software engineering, with expertise in Java, Python, and JavaScript. While I enjoy building secure, scalable solutions, I am also certified in networking and cybersecurity through Cisco. I am actively seeking opportunities to contribute to a team that values clean code and innovation.</p>
         </div>
         
+        <h2 class="section-title">Education</h2>
         <div class="grid-container">
             <div class="info-card">
                 <h3>Diploma in IT</h3>
@@ -57,20 +69,25 @@
         </div>
 
         <h2 class="section-title">Certifications</h2>
-        <div class="grid-container">
-            <div class="cert-card">
-                <i class='bx bxs-shield-quarter'></i>
-                <h3>Cisco Cybersecurity</h3>
-            </div>
-            <div class="cert-card">
-                <i class='bx bx-network-chart'></i>
-                <h3>Cisco CCNAv7: Networking</h3>
-            </div>
-            <div class="cert-card">
-                <i class='bx bx-code-alt'></i>
-                <h3>Cisco IT Essentials</h3>
-            </div>
+<div class="grid-container">
+    <div class="cert-card">
+        <img src="https://www.shutterstock.com/image-illustration/cisco-networking-cloud-cybersecurity-solutions-600nw-2306165573.jpg" alt="Cisco Logo" class="cisco-logo">
+        <h3>CCNAv7: Switching, Routing, and Wireless Essentials</h3>
+        <div class="cert-overlay">
+            <p class="cert-date">19 July 2024</p>
+            <a href="CCNA-_Switching-_Routing-_and_Wireless_Essentials_certificate_223380814-edu-vut-ac-za_0311f698-7ee4-4048-86d0-96a18945abdb.pdf" target="_blank" class="btn-view-cert">View Certificate</a>
         </div>
+    </div>
+
+    <div class="cert-card">
+        <img src="https://www.shutterstock.com/image-illustration/cisco-networking-cloud-cybersecurity-solutions-600nw-2306165573.jpg" alt="Cisco Logo" class="cisco-logo">
+        <h3>IT Essentials: PC Hardware and Software</h3>
+        <div class="cert-overlay">
+            <p class="cert-date">18 July 2023</p>
+            <a href="IT_Essentials_certificate_223380814-edu-vut-ac-za_989a5897-4750-42ec-aa50-eeb4c14696ec.pdf" target="_blank" class="btn-view-cert">View Certificate</a>
+        </div>
+    </div>
+</div>
     </section>
 
     <section class="skills" id="skills">
@@ -103,16 +120,12 @@
         <p class="contact-desc">I’m open to opportunities in software development and collaborations. Feel free to reach out!</p>
         
         <div class="contact-form">
-            <div id="form-status" style="display:none; color: #28a745; font-weight: bold; margin-bottom: 10px;">
-                ✅ Message sent successfully!
-            </div>
             <form action="https://formspree.io/f/mkojvzow" method="POST">
-                <input type="hidden" name="_next" value="https://yourwebsite.com/index.html">
-
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
                 <textarea name="message" rows="8" placeholder="Your Message" required></textarea>
                 <button type="submit" class="btn-send">Send Message</button>
+                <div id="form-status"></div>
             </form>
         </div>
 
@@ -122,7 +135,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Tebogo Thaba. Built for Excellence.</p>
+        <p>&copy; 2025 Tebogo Thaba. Built for Excellence.</p>
     </footer>
 
     <script src="main.js"></script>
