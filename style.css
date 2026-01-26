@@ -54,7 +54,33 @@ header {
 
 .logo:hover::after { width: 100%; }
 
-.navbar { display: flex; list-style: none; align-items: center; }
+/* Grouping icons for the right side on mobile */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    order: 3;
+}
+
+#menu-icon {
+    display: none; /* Hidden on desktop */
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text);
+}
+
+#darkmode {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.navbar { 
+    display: flex;
+    list-style: none;
+    align-items: center; 
+    margin-left: auto;
+    order: 2;
+   }
 
 .navbar a { 
     margin: 0 15px; 
@@ -146,9 +172,9 @@ header {
     text-align: center;
 }
 
-/* Cert Card Specific (Vukona's Style) */
+/* Cert Card Specific Styles */
 .cert-card {
-    background: #e1f5fe; /* Light blue base */
+    background: #e1f5fe; 
     position: relative;
     overflow: hidden;
     min-height: 280px;
@@ -201,7 +227,12 @@ header {
 /* Skills */
 .skills-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0 10% 50px; }
 .skills-tags span { background: var(--primary); color: white; padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; font-weight: 500; }
-
+/* Movement on Hover */
+.skills-tags span:hover {
+  transform: translateY(-5px) scale(1.05); /* Lifts up and grows slightly */
+  background: var(--secondary, #4a90e2);   /* Optional: slight color shift */
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);  /* Deeper shadow for "depth" */
+}
 /* Buttons with Hover Line */
 .btn-group { display: flex; gap: 15px; justify-content: center; }
 
@@ -282,6 +313,53 @@ header {
 
 footer { text-align: center; padding: 40px; border-top: 1px solid var(--shadow); opacity: 0.7; }
 
+/* MOBILE RESPONSIVE  */
 @media (max-width: 768px) {
-    .navbar { display: flex; }
+    .header-icons{
+        padding: 15px 5%;
+        order: 2;
+    }
+
+    #menu-icon {
+        display: block; /* Show hamburger only on mobile */
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        right: 5%;
+        width: 200px;
+        background: var(--card);
+        display: none; 
+        flex-direction: column;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px var(--shadow);
+        padding: 10px 0;
+        z-index: 100;
+        border: 1px solid var(--shadow);
+        margin-left: 0;
+    }
+
+    /* Shown when toggled by menu icon */
+    .navbar.active {
+        display: flex; 
+    }
+
+    .navbar li { 
+        width: 100%; 
+    }
+
+    .navbar a {
+        padding: 15px 20px;
+        margin: 0;
+        display: block;
+        border-bottom: 1px solid var(--shadow);
+    }
+    
+    .navbar li:last-child a { border-bottom: none; }
+
+    /* Home Layout Adjustments */
+    .home h1 { font-size: 2.5rem; }
+    .btn-group { flex-direction: column; width: 100%; }
+    .btn { width: 90%; margin: 5px auto; }
 }

@@ -4,7 +4,28 @@ window.addEventListener('scroll', () => {
     header.classList.toggle('sticky', window.scrollY > 0);
 });
 
-/* 2. DARK MODE TOGGLE */
+/* 2. MOBILE MENU TOGGLE */
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
+
+if (menuIcon && navbar) {
+    menuIcon.onclick = () => {
+        // Toggle the 'bx-x' class to change the icon if desired
+        menuIcon.classList.toggle('bx-x');
+        // Toggle the 'active' class on navbar to show/hide the dropdown
+        navbar.classList.toggle('active');
+    };
+
+    // Hide menu when clicking a link
+    navbar.querySelectorAll('a').forEach(link => {
+        link.onclick = () => {
+            menuIcon.classList.remove('bx-x');
+            navbar.classList.remove('active');
+        };
+    });
+}
+
+/* 3. DARK MODE TOGGLE */
 const darkmode = document.querySelector('#darkmode');
 if (darkmode) {
     darkmode.onclick = () => {
@@ -18,10 +39,10 @@ if (darkmode) {
     };
 }
 
-/* 3. TYPING EFFECT */
+/* 4. TYPING EFFECT */
 const typingText = document.querySelector(".typing");
 if (typingText) {
-    const roles = ["IT Graduate", "Full Stack Developer", "Software Enthusiast", "IT Support", "Networking"];
+    const roles = ["IT Graduate", "Full Stack Developer", "Software Enthusiast", "IT Support", "Networking", "Java Developer"];
     let roleIndex = 0, charIndex = 0, isDeleting = false;
 
     function typeEffect() {
@@ -47,7 +68,7 @@ if (typingText) {
     document.addEventListener("DOMContentLoaded", typeEffect);
 }
 
-/* 4. SMOOTH SCROLL FOR BUTTONS & NAV LINKS */
+/* 5. SMOOTH SCROLL FOR BUTTONS & NAV LINKS */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -64,7 +85,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-/* 5. CONTACT FORM (AJAX SUBMISSION) */
+/* 6. CONTACT FORM (AJAX SUBMISSION) */
 const contactForm = document.querySelector('.contact-form form');
 const statusMessage = document.getElementById('form-status');
 
