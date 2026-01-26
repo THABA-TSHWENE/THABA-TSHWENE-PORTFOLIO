@@ -21,7 +21,6 @@ body { background: var(--bg); color: var(--text); line-height: 1.6; }
 /* Header & Nav */
 header { 
     position: fixed; 
-    color: green;
     width: 100%; 
     top: 0; 
     display: flex; 
@@ -31,6 +30,7 @@ header {
     background: var(--bg); 
     z-index: 1000; 
     border-bottom: 1px solid var(--shadow); 
+    background-color: lightblue; /* Added light blue background */
 }
 
 .logo { 
@@ -283,5 +283,5 @@ header {
 footer { text-align: center; padding: 40px; border-top: 1px solid var(--shadow); opacity: 0.7; }
 
 @media (max-width: 768px) {
-    .navbar { display: none; }
+    .navbar { display: flex; }
 }

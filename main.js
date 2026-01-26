@@ -21,7 +21,7 @@ if (darkmode) {
 /* 3. TYPING EFFECT */
 const typingText = document.querySelector(".typing");
 if (typingText) {
-    const roles = ["IT Graduate", "Full Stack Developer", "Software Enthusiast"];
+    const roles = ["IT Graduate", "Full Stack Developer", "Software Enthusiast", "IT Support", "Networking"];
     let roleIndex = 0, charIndex = 0, isDeleting = false;
 
     function typeEffect() {
@@ -82,8 +82,8 @@ if (contactForm) {
             headers: { 'Accept': 'application/json' }
         }).then(response => {
             if (response.ok) {
-                statusMessage.className = "status-success"; // Matches the CSS we wrote
-                statusMessage.innerText = "Message sent successfully! I'll get back to you soon.";
+                statusMessage.className = "status-success";
+                statusMessage.innerText = "Message sent successfully! Tebogo will get back to you soon.";
                 contactForm.reset(); 
                 setTimeout(() => { statusMessage.style.display = 'none'; }, 5000);
             } else {
