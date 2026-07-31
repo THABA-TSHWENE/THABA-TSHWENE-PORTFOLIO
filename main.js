@@ -10,34 +10,51 @@ const navbar = document.querySelector('.navbar');
 
 if (menuIcon && navbar) {
     menuIcon.onclick = () => {
-        // Toggle the 'bx-x' class to change the icon if desired
         menuIcon.classList.toggle('bx-x');
-        // Toggle the 'active' class on navbar to show/hide the dropdown
         navbar.classList.toggle('active');
     };
 
-    // Hide menu when clicking a link
     navbar.querySelectorAll('a').forEach(link => {
         link.onclick = () => {
             menuIcon.classList.remove('bx-x');
             navbar.classList.remove('active');
         };
     });
+    
+    document.addEventListener('click', (e) => {
+        if (!navbar.contains(e.target) && !menuIcon.contains(e.target) && navbar.classList.contains('active')) {
+            menuIcon.classList.remove('bx-x');
+            navbar.classList.remove('active');
+        }
+    });
 }
 
-/* 3. DARK MODE TOGGLE */
-const darkmode = document.querySelector('#darkmode');
-if (darkmode) {
-    darkmode.onclick = () => {
-        if(darkmode.classList.contains('bx-moon')){
-            darkmode.classList.replace('bx-moon', 'bx-sun');
-            document.body.classList.add('active');
-        } else {
-            darkmode.classList.replace('bx-sun', 'bx-moon');
-            document.body.classList.remove('active');
-        }
-    };
+/* 3. DARK MODE TOGGLE + PERSISTENCE */
+const darkmodeBtns = document.querySelectorAll('#darkmode, #darkmode-desktop');
+
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('active');
+    darkmodeBtns.forEach(btn => {
+        if (btn) btn.classList.replace('bx-moon', 'bx-sun');
+    });
 }
+
+darkmodeBtns.forEach(btn => {
+    if (btn) {
+        btn.onclick = () => {
+            const isDark = document.body.classList.toggle('active');
+            localStorage.setItem('darkMode', isDark);
+            
+            darkmodeBtns.forEach(b => {
+                if (isDark) {
+                    b.classList.replace('bx-moon', 'bx-sun');
+                } else {
+                    b.classList.replace('bx-sun', 'bx-moon');
+                }
+            });
+        };
+    }
+});
 
 /* 4. TYPING EFFECT */
 const typingText = document.querySelector(".typing");
@@ -57,7 +74,7 @@ if (typingText) {
 
         if (!isDeleting && charIndex === currentRole.length) {
             isDeleting = true;
-            typeSpeed = 2000; // Pause at end
+            typeSpeed = 2000;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
@@ -65,17 +82,17 @@ if (typingText) {
         }
         setTimeout(typeEffect, typeSpeed);
     }
-    document.addEventListener("DOMContentLoaded", typeEffect);
+    typeEffect();
 }
 
-/* 5. SMOOTH SCROLL FOR BUTTONS & NAV LINKS */
+/* 5. SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetElement = document.querySelector(this.getAttribute('href'));
         if (targetElement) {
             const headerHeight = document.querySelector('header').offsetHeight;
-            const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
 
             window.scrollTo({
                 top: offsetPosition,
@@ -85,7 +102,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-/* 6. CONTACT FORM (AJAX SUBMISSION) */
+/* 6. ACTIVE NAV LINK ON SCROLL */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.navbar a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 150) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+        }
+    });
+});
+
+/* 7. CONTACT FORM (AJAX SUBMISSION) */
 const contactForm = document.querySelector('.contact-form form');
 const statusMessage = document.getElementById('form-status');
 
@@ -95,6 +133,7 @@ if (contactForm) {
         const data = new FormData(event.target);
         
         statusMessage.style.display = 'block';
+        statusMessage.className = '';
         statusMessage.innerText = "Sending...";
 
         fetch(event.target.action, {
