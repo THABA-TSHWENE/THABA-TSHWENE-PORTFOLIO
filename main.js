@@ -123,7 +123,70 @@ window.addEventListener('scroll', () => {
     });
 });
 
-/* 7. CONTACT FORM (AJAX SUBMISSION) */
+/* 7. SCROLL REVEAL ANIMATION */
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+/* 8. BACK TO TOP BUTTON */
+const backToTopBtn = document.getElementById('backToTop');
+
+if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+/* 9. COPY EMAIL */
+function copyEmail() {
+    const email = document.getElementById('email-text').innerText;
+    navigator.clipboard.writeText(email).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
+    }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
+    });
+}
+
+/* 10. CONTACT FORM (AJAX SUBMISSION) */
 const contactForm = document.querySelector('.contact-form form');
 const statusMessage = document.getElementById('form-status');
 
@@ -155,4 +218,6 @@ if (contactForm) {
             statusMessage.innerText = "Error: Could not connect to the server.";
         });
     });
+
+    
 }
