@@ -461,8 +461,10 @@ body.active .cert-card {
     border-radius: 50px; 
     font-size: 0.9rem; 
     font-weight: 500; 
-    cursor: default;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .skills-tags span:hover {

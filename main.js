@@ -59,7 +59,14 @@ darkmodeBtns.forEach(btn => {
 /* 4. TYPING EFFECT */
 const typingText = document.querySelector(".typing");
 if (typingText) {
-    const roles = ["IT Graduate", "Full Stack Developer", "Software Enthusiast", "IT Support", "Networking", "Java Developer"];
+    const roles = [
+        "Systems Administrator Intern", 
+        "IT Graduate", 
+        "Full Stack Developer", 
+        "Systems Administrator", 
+        "Data & Cloud Systems", 
+        "Java Developer"
+    ];
     let roleIndex = 0, charIndex = 0, isDeleting = false;
 
     function typeEffect() {
@@ -218,6 +225,4 @@ if (contactForm) {
             statusMessage.innerText = "Error: Could not connect to the server.";
         });
     });
-
-    
 }
